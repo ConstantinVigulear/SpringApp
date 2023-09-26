@@ -3,8 +3,6 @@ package com.vigulear.spring.service;
 import com.vigulear.spring.dao.Dao;
 import com.vigulear.spring.model.Person;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

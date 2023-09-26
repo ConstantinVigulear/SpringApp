@@ -39,7 +39,7 @@ public class App {
 
     person.addSkill(skill2);
 
-    personService.update(person);
+    person = personService.update(person);
 
   }
 }

@@ -3,7 +3,6 @@ package com.vigulear.spring.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public abstract class AbstractDao<T> implements Dao<T> {
 
     entityManager.getTransaction().begin();
 
-    T returnedT = null;
+    T returnedT;
 
     try {
       returnedT = entityManager.merge(t);
