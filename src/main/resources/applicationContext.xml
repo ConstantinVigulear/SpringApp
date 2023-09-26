@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:component-scan base-package="com.vigulear.spring"/>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@//localhost:1521/XEPDB1?useSSL=false&amp;serverTimezone=UTC"/>
+        <property name="user" value="crme059"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.vigulear.spring.model"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="personBean" class="com.vigulear.spring.model.Person" scope="prototype"/>
+    <bean id="skillBean" class="com.vigulear.spring.model.Skill" scope="prototype"/>
+
+    <bean id="skillDao" class="com.vigulear.spring.dao.SkillDaoImpl"/>
+    <bean id="personDao" class="com.vigulear.spring.dao.PersonDaoImpl"/>
+    <bean id="abstractDao" class="com.vigulear.spring.dao.AbstractDao" abstract="true"/>
+
+    <bean id="skillService" class="com.vigulear.spring.service.SkillServiceImpl" />
+    <bean id="personService" class="com.vigulear.spring.service.PersonServiceImpl"/>
+
+    <tx:annotation-driven/>
+</beans>
