@@ -126,18 +126,20 @@ public class Person {
     return validator.isValid(this);
   }
 
-  public void addSkill(Skill skill) {
+  public Person addSkill(Skill skill) {
     if (skill.isValid() && !skills.contains(skill)) {
       skills.add(skill);
       skill.getPersons().add(this);
       totalCost += (int) skill.getSkillCost();
     }
+    return this;
   }
 
-  public void removeSkill(Skill skill) {
+  public Person removeSkill(Skill skill) {
     this.skills.remove(skill);
     skill.getPersons().remove(this);
     this.totalCost -= (int) skill.getSkillCost();
+    return this;
   }
 
   public void calculateTotalCost() {

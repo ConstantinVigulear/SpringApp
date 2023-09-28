@@ -108,16 +108,19 @@ public class Skill {
     return Objects.hash(name, domain, level);
   }
 
-  public void addPerson(Person person) {
+  public Skill addPerson(Person person) {
     if (person.isValid()) {
       persons.add(person);
       person.getSkills().add(this);
     }
+
+    return this;
   }
 
-  public void removePerson(Person person) {
+  public Skill removePerson(Person person) {
     this.persons.remove(person);
     person.removeSkill(this);
+    return this;
   }
 
   public double getSkillCost() {
