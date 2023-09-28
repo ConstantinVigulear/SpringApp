@@ -3,11 +3,16 @@ package com.vigulear.spring.model;
 import com.vigulear.spring.validator.PersonValidator;
 import com.vigulear.spring.validator.Validator;
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Component
+@Scope("prototype")
 @Table(name = "persons")
 public class Person {
 
@@ -50,45 +55,51 @@ public class Person {
     return id;
   }
 
-  public void setId(Long id) {
+  public Person setId(Long id) {
     this.id = id;
+    return this;
   }
 
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public Person setName(String name) {
     this.name = name;
+    return this;
   }
 
   public String getSurname() {
     return surname;
   }
 
-  public void setSurname(String surname) {
+  public Person setSurname(String surname) {
     this.surname = surname;
+    return this;
   }
 
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public Person setEmail(String email) {
     this.email = email;
+    return this;
   }
 
   public Set<Skill> getSkills() {
     return skills;
   }
 
-  public void setSkills(Set<Skill> skills) {
+  public Person setSkills(Set<Skill> skills) {
     skills.forEach(
         skill -> {
           totalCost += (int) skill.getSkillCost();
           skill.addPerson(this);
         });
     this.skills = skills;
+
+    return this;
   }
 
   public int getTotalCost() {

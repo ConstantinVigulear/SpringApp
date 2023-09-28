@@ -3,9 +3,11 @@ package com.vigulear.spring.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public abstract class AbstractDao<T> implements Dao<T> {
 
   private final SessionFactory sessionFactory;

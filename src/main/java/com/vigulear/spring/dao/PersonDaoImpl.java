@@ -5,10 +5,12 @@ import com.vigulear.spring.model.Skill;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PersonDaoImpl extends AbstractDao<Person> implements PersonDao {
 
   private final SessionFactory sessionFactory;

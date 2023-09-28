@@ -3,10 +3,14 @@ package com.vigulear.spring.model;
 import com.vigulear.spring.validator.SkillValidator;
 import com.vigulear.spring.validator.Validator;
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Entity
+@Component
+@Scope("prototype")
 @Table(name = "skills")
 public class Skill {
 
@@ -44,41 +48,46 @@ public class Skill {
     return id;
   }
 
-  public void setId(Long id) {
+  public Skill setId(Long id) {
     this.id = id;
+    return this;
   }
 
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public Skill setName(String name) {
     this.name = name;
+    return this;
   }
 
   public SkillDomain getDomain() {
     return domain;
   }
 
-  public void setDomain(SkillDomain domain) {
+  public Skill setDomain(SkillDomain domain) {
     this.domain = domain;
+    return this;
   }
 
   public SkillLevel getLevel() {
     return level;
   }
 
-  public void setLevel(SkillLevel level) {
+  public Skill setLevel(SkillLevel level) {
     this.level = level;
+    return this;
   }
 
   public Set<Person> getPersons() {
     return persons;
   }
 
-  public void setPersons(Set<Person> persons) {
+  public Skill setPersons(Set<Person> persons) {
     persons.forEach(person -> person.addSkill(this));
     this.persons = persons;
+    return this;
   }
 
   public boolean isValid() {

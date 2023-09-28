@@ -5,7 +5,9 @@ import com.vigulear.spring.dao.Dao;
 import java.util.List;
 import com.vigulear.spring.model.Skill;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
+@Service
 @Transactional
 public class SkillServiceImpl implements SkillService {
 
