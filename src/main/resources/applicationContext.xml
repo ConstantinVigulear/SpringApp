@@ -29,6 +29,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
             </props>
         </property>
     </bean>
@@ -43,7 +44,7 @@
 
     <bean id="skillDao" class="com.vigulear.spring.dao.SkillDaoImpl"/>
     <bean id="personDao" class="com.vigulear.spring.dao.PersonDaoImpl"/>
-    <bean id="abstractDao" class="com.vigulear.spring.dao.AbstractDao" abstract="true"/>
+
 
     <bean id="skillService" class="com.vigulear.spring.service.SkillServiceImpl" />
     <bean id="personService" class="com.vigulear.spring.service.PersonServiceImpl"/>

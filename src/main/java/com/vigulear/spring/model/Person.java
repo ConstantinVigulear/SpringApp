@@ -26,7 +26,7 @@ public class Person {
   private String email;
 
   @ManyToMany(
-      fetch = FetchType.EAGER,
+      fetch = FetchType.LAZY,
       cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   @JoinTable(
       name = "persons_skills",

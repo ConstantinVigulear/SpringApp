@@ -28,7 +28,7 @@ public class Skill {
 
   @ManyToMany(
       mappedBy = "skills",
-      fetch = FetchType.EAGER,
+      fetch = FetchType.LAZY,
       cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   private Set<Person> persons = new HashSet<>();
 
