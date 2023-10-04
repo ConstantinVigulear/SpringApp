@@ -3,10 +3,14 @@ package com.vigulear.spring.model;
 import com.vigulear.spring.validator.SkillValidator;
 import com.vigulear.spring.validator.Validator;
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Entity
+@Component
+@Scope("prototype")
 @Table(name = "skills")
 public class Skill {
 

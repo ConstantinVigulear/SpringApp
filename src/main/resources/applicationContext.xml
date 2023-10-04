@@ -39,15 +39,5 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="personBean" class="com.vigulear.spring.model.Person" scope="prototype"/>
-    <bean id="skillBean" class="com.vigulear.spring.model.Skill" scope="prototype"/>
-
-    <bean id="skillDao" class="com.vigulear.spring.dao.SkillDaoImpl"/>
-    <bean id="personDao" class="com.vigulear.spring.dao.PersonDaoImpl"/>
-
-
-    <bean id="skillService" class="com.vigulear.spring.service.SkillServiceImpl" />
-    <bean id="personService" class="com.vigulear.spring.service.PersonServiceImpl"/>
-
     <tx:annotation-driven/>
 </beans>

@@ -3,37 +3,31 @@ package com.vigulear.spring.dao;
 import com.vigulear.spring.model.Person;
 import com.vigulear.spring.model.Skill;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PersonDaoImpl extends AbstractDao<Person> implements PersonDao {
 
-  private final SessionFactory sessionFactory;
-
-  public PersonDaoImpl(SessionFactory sessionFactory, SessionFactory sessionFactory1) {
-    super(sessionFactory);
-    this.sessionFactory = sessionFactory1;
-  }
-
+  @PersistenceContext
   private EntityManager entityManager;
 
 
   @Override
   public Person get(Long id) {
-    entityManager = sessionFactory.openSession().getEntityManagerFactory().createEntityManager();
-
     Person person = entityManager.find(Person.class, id);
-    entityManager.close();
-
-    return person;
+    person.getSkills().size();
+      return person;
   }
 
   @Override
   public Person get(Person person) {
-    entityManager = sessionFactory.openSession().getEntityManagerFactory().createEntityManager();
 
     Person resultPerson = null;
 
@@ -45,21 +39,15 @@ public class PersonDaoImpl extends AbstractDao<Person> implements PersonDao {
 
     if (!query.getResultList().isEmpty()) {
       resultPerson = (Person) query.getResultList().get(0);
+      resultPerson.getSkills().size();
     }
-
-    entityManager.close();
 
     return resultPerson;
   }
 
   @Override
   public List<Person> getAll() {
-    entityManager = sessionFactory.openSession().getEntityManagerFactory().createEntityManager();
-
-    List<Person> people = entityManager.createQuery("from Person ", Person.class).getResultList();
-
-    entityManager.close();
-    return people;
+      return entityManager.createQuery("from Person ", Person.class).getResultList();
   }
 
   @Override

@@ -3,11 +3,16 @@ package com.vigulear.spring.model;
 import com.vigulear.spring.validator.PersonValidator;
 import com.vigulear.spring.validator.Validator;
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Component
+@Scope("prototype")
 @Table(name = "persons")
 public class Person {
 
